@@ -5,6 +5,13 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "QueryOpinion", "QueryOpinion\QueryOpinion.fsproj", "{4A923525-69B5-488C-9D98-226C819C0E9F}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "OpinionMinerAPI", "OpinionMinerAPI\OpinionMinerAPI.fsproj", "{B7B2DCD7-A233-442A-838F-43CCC3C54F91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6D2D9F0E-AAFB-400E-B2A2-FF56E208FF27}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{4A923525-69B5-488C-9D98-226C819C0E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A923525-69B5-488C-9D98-226C819C0E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A923525-69B5-488C-9D98-226C819C0E9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7B2DCD7-A233-442A-838F-43CCC3C54F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7B2DCD7-A233-442A-838F-43CCC3C54F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7B2DCD7-A233-442A-838F-43CCC3C54F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B2DCD7-A233-442A-838F-43CCC3C54F91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
