@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6D2D9F
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpinionMinerData", "OpinionMinerData\OpinionMinerData.csproj", "{410F19C2-823D-4BC3-B3BC-32617D0B494A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{B7B2DCD7-A233-442A-838F-43CCC3C54F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7B2DCD7-A233-442A-838F-43CCC3C54F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7B2DCD7-A233-442A-838F-43CCC3C54F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410F19C2-823D-4BC3-B3BC-32617D0B494A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410F19C2-823D-4BC3-B3BC-32617D0B494A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410F19C2-823D-4BC3-B3BC-32617D0B494A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410F19C2-823D-4BC3-B3BC-32617D0B494A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

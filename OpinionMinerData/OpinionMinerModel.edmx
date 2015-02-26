@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OpinionMinerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Opinion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OpinionRequestId" Type="int" Nullable="false" />
+          <Property Name="Result" Type="float" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Term" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FromDate" Type="date" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="PageCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OpinionRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="date" Nullable="false" />
+          <Property Name="Term" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="DayCycle" Type="int" Nullable="false" />
+          <Property Name="Repeate" Type="int" Nullable="false" />
+          <Property Name="PageCount" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Opinion__Opinion__145C0A3F">
+          <End Role="OpinionRequest" Type="Self.OpinionRequest" Multiplicity="1" />
+          <End Role="Opinion" Type="Self.Opinion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpinionRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Opinion">
+              <PropertyRef Name="OpinionRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OpinionMinerDBModelStoreContainer">
+          <EntitySet Name="Opinion" EntityType="Self.Opinion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OpinionRequest" EntityType="Self.OpinionRequest" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Opinion__Opinion__145C0A3F" Association="Self.FK__Opinion__Opinion__145C0A3F">
+            <End Role="OpinionRequest" EntitySet="OpinionRequest" />
+            <End Role="Opinion" EntitySet="Opinion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OpinionMinerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Opinion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpinionRequestId" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="Double" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Term" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PageCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OpinionRequest" Relationship="Self.FK__Opinion__Opinion__145C0A3F" FromRole="Opinion" ToRole="OpinionRequest" />
+        </EntityType>
+        <EntityType Name="OpinionRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Term" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DayCycle" Type="Int32" Nullable="false" />
+          <Property Name="Repeate" Type="Int32" Nullable="false" />
+          <Property Name="PageCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Opinion" Relationship="Self.FK__Opinion__Opinion__145C0A3F" FromRole="OpinionRequest" ToRole="Opinion" />
+        </EntityType>
+        <Association Name="FK__Opinion__Opinion__145C0A3F">
+          <End Role="OpinionRequest" Type="Self.OpinionRequest" Multiplicity="1" />
+          <End Role="Opinion" Type="Self.Opinion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpinionRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Opinion">
+              <PropertyRef Name="OpinionRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OpinionMinerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Opinion" EntityType="Self.Opinion" />
+          <EntitySet Name="OpinionRequest" EntityType="Self.OpinionRequest" />
+          <AssociationSet Name="FK__Opinion__Opinion__145C0A3F" Association="Self.FK__Opinion__Opinion__145C0A3F">
+            <End Role="OpinionRequest" EntitySet="OpinionRequest" />
+            <End Role="Opinion" EntitySet="Opinion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OpinionMinerDBModelStoreContainer" CdmEntityContainer="OpinionMinerDBEntities">
+          <EntitySetMapping Name="Opinion">
+            <EntityTypeMapping TypeName="OpinionMinerDBModel.Opinion">
+              <MappingFragment StoreEntitySet="Opinion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OpinionRequestId" ColumnName="OpinionRequestId" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="PageCount" ColumnName="PageCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OpinionRequest">
+            <EntityTypeMapping TypeName="OpinionMinerDBModel.OpinionRequest">
+              <MappingFragment StoreEntitySet="OpinionRequest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="DayCycle" ColumnName="DayCycle" />
+                <ScalarProperty Name="Repeate" ColumnName="Repeate" />
+                <ScalarProperty Name="PageCount" ColumnName="PageCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
