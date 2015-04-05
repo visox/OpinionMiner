@@ -9,13 +9,13 @@ open OpinionMinerAPI.Models
 open OpinionMinerData
 
 /// Retrieves values.
-type OpinionController() =
+type OpinionAnswerController() =
     inherit ApiController()
 
-    member x.Get() =
-        x.Request.CreateResponse(HttpStatusCode.OK) |> ignore
-        let context = new OpinionMinerDBEntities()
-        context.Opinion
+//    member x.Get() =
+//        x.Request.CreateResponse(HttpStatusCode.OK) |> ignore
+//        let context = new OpinionMinerDBEntities()
+//        context.Opinion
 //        [|{Id = 1;
 //           OpinionRequestId = 1;
 //           Result = 0.25;

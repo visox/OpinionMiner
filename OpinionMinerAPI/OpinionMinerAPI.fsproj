@@ -111,10 +111,10 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Models\OpinionRequest.fs" />
-    <Compile Include="Models\Opinion.fs" />
-    <Compile Include="Controllers\OpinionRequestController.fs" />
-    <Compile Include="Controllers\OpinionController.fs" />
+    <Compile Include="Models\OpinionClientRequest.fs" />
+    <Compile Include="Models\OpinionAnswer.fs" />
+    <Compile Include="Controllers\OpinionClientRequestController.fs" />
+    <Compile Include="Controllers\OpinionAnswerController.fs" />
     <Compile Include="OpinionRequestManager.fs" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />

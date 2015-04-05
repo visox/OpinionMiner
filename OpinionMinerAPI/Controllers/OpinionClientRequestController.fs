@@ -8,7 +8,7 @@ open System.Web.Http
 open OpinionMinerAPI.Models
 
 /// Retrieves values.
-type OpinionRequestController() =
+type OpinionClientRequestController() =
     inherit ApiController()
 
     member x.Put() =

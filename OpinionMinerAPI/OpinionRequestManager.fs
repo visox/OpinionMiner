@@ -1,35 +1,36 @@
 ﻿module OpinionRequestManager
 
+open System
+
 open OpinionMinerData
 open OpinionMinerAPI.Models
 
 let context = new OpinionMinerDBEntities()
 
-let rec AddPartlyRequests (request : OpinionMinerData.OpinionRequest) part =
+let rec AddPartlyRequests term repeate (toDate: DateTime) pageCount part =
     match part with
-    | over when over >= request.Repeate -> ()
+    | over when over >= repeate -> ()
     | _ ->
-        context.Opinion.Add(
-            OpinionMinerData.Opinion(
-                        OpinionRequestId = request.Id,
-                        Created = request.Created,
-                        Term = request.Term, 
-                        ToDate = request.ToDate.AddDays((float request.DayCycle * float part)),
-                        FromDate = request.ToDate.AddDays((float request.DayCycle * float (part + 1))),
-                        PageCount = request.PageCount)) |> ignore
-        AddPartlyRequests request (1 + part)
+        context.OpinionRequest.Add(
+            OpinionMinerData.OpinionRequest(
+                        Created = DateTime.Now,
+                        Term = term, 
+                        ToDate = toDate.AddMonths(-part),
+                        FromDate = toDate.AddMonths(-(1+part)),
+                        PageCount = pageCount)) |> ignore
+        AddPartlyRequests term repeate toDate pageCount (1 + part)
     
-let AddOpinionRequest (request : OpinionRequest) =
-    let savedRequest = context.OpinionRequest.Add(
-                        OpinionMinerData.OpinionRequest(
-                                    Created = request.Created,
-                                    Term = request.Term, 
-                                    ToDate = request.ToDate,
-                                    DayCycle = request.DayCycle,
-                                    Repeate = request.Repeate,
-                                    PageCount = request.PageCount))
-    AddPartlyRequests savedRequest savedRequest.Repeate
-    ()
+//let AddOpinionRequest (request : OpinionRequest) =
+//    let savedRequest = context.OpinionRequest.Add(
+//                        OpinionMinerData.OpinionRequest(
+//                                    Created = request.Created,
+//                                    Term = request.Term, 
+//                                    ToDate = request.ToDate,
+//                                    DayCycle = request.DayCycle,
+//                                    Repeate = request.Repeate,
+//                                    PageCount = request.PageCount))
+//    AddPartlyRequests savedRequest savedRequest.Repeate
+//    ()
 //    public int Id { get; set; }
 //        public System.DateTime Created { get; set; }
 //        public string Term { get; set; }

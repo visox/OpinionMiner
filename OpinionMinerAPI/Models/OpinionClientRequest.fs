@@ -4,12 +4,7 @@ open Newtonsoft.Json
 open System
 
 [<CLIMutable>]
-type OpinionRequest = {
-    Id : int
-    Created : DateTime
+type OpinionClientRequest = {
     Term : string
     ToDate : DateTime
-    DayCycle : int
-    Repeate : int
-    PageCount : int
 }
