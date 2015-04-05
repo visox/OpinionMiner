@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22609.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "QueryOpinion", "QueryOpinion\QueryOpinion.fsproj", "{4A923525-69B5-488C-9D98-226C819C0E9F}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebOpinionProvider", "WebOpinionProvider\WebOpinionProvider.fsproj", "{4A923525-69B5-488C-9D98-226C819C0E9F}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "OpinionMinerAPI", "OpinionMinerAPI\OpinionMinerAPI.fsproj", "{B7B2DCD7-A233-442A-838F-43CCC3C54F91}"
 EndProject
