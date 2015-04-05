@@ -14,5 +14,8 @@ type OpinionClientRequestController() =
     inherit ApiController()
 
     member x.Put(request: OpinionClientRequest) =
-        AddPartlyRequests request.Term 12 request.ToDate 50 0
-        x.Request.CreateResponse(HttpStatusCode.OK)
+        try
+            AddPartlyRequests request.Term 12 request.ToDate 50 0
+            x.Request.CreateResponse(HttpStatusCode.OK)
+        with
+            |_ -> x.Request.CreateResponse(HttpStatusCode.InternalServerError)

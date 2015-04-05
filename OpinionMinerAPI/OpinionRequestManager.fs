@@ -27,5 +27,6 @@ let rec AddPartlyRequests term repeate (toDate: DateTime) pageCount part =
                         Term = term, 
                         ToDate = toDate.AddMonths(-part),
                         FromDate = toDate.AddMonths(-(1+part)),
-                        PageCount = pageCount)) |> ignore)
+                        PageCount = pageCount)) |> ignore
+                context.SaveChanges |> ignore)
         AddPartlyRequests term repeate toDate pageCount (1 + part)
