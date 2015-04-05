@@ -11,30 +11,21 @@ let rec AddPartlyRequests term repeate (toDate: DateTime) pageCount part =
     match part with
     | over when over >= repeate -> ()
     | _ ->
-        context.OpinionRequest.Add(
-            OpinionMinerData.OpinionRequest(
+        lock context (fun ()->
+            match context.OpinionRequest 
+                |> Seq.exists(
+                                fun(r) -> 
+                                r.Term.Equals <| term &&
+                                r.ToDate.Equals <| toDate.AddMonths(-part) &&
+                                r.ToDate.Equals <| toDate.AddMonths(-(1+part)) &&
+                                r.PageCount.Equals <| pageCount) with
+            | true -> ()
+            | false ->
+                context.OpinionRequest.Add(
+                    OpinionMinerData.OpinionRequest(
                         Created = DateTime.Now,
                         Term = term, 
                         ToDate = toDate.AddMonths(-part),
                         FromDate = toDate.AddMonths(-(1+part)),
-                        PageCount = pageCount)) |> ignore
+                        PageCount = pageCount)) |> ignore)
         AddPartlyRequests term repeate toDate pageCount (1 + part)
-    
-//let AddOpinionRequest (request : OpinionRequest) =
-//    let savedRequest = context.OpinionRequest.Add(
-//                        OpinionMinerData.OpinionRequest(
-//                                    Created = request.Created,
-//                                    Term = request.Term, 
-//                                    ToDate = request.ToDate,
-//                                    DayCycle = request.DayCycle,
-//                                    Repeate = request.Repeate,
-//                                    PageCount = request.PageCount))
-//    AddPartlyRequests savedRequest savedRequest.Repeate
-//    ()
-//    public int Id { get; set; }
-//        public System.DateTime Created { get; set; }
-//        public string Term { get; set; }
-//        public System.DateTime ToDate { get; set; }
-//        public int DayCycle { get; set; }
-//        public int Repeate { get; set; }
-//        public int PageCount { get; set; }

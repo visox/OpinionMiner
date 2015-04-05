@@ -113,9 +113,9 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Models\OpinionClientRequest.fs" />
     <Compile Include="Models\OpinionAnswer.fs" />
+    <Compile Include="OpinionRequestManager.fs" />
     <Compile Include="Controllers\OpinionClientRequestController.fs" />
     <Compile Include="Controllers\OpinionAnswerController.fs" />
-    <Compile Include="OpinionRequestManager.fs" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
     <Compile Include="Global.asax.fs">
