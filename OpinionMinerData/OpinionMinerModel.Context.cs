@@ -25,7 +25,6 @@ namespace OpinionMinerData
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Opinion> Opinion { get; set; }
         public virtual DbSet<OpinionRequest> OpinionRequest { get; set; }
     }
 }

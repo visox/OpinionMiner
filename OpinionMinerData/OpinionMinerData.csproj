@@ -65,9 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Opinion.cs">
-      <DependentUpon>OpinionMinerModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="OpinionMinerModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,13 +112,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\OpinionMinerDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>OpinionMinerDB.mdf</DependentUpon>
-    </Content>
-    <Content Include="OpinionMinerDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OpinionMinerDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>OpinionMinerDB.mdf</DependentUpon>
     </Content>

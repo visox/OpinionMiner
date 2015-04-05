@@ -14,19 +14,13 @@ namespace OpinionMinerData
     
     public partial class OpinionRequest
     {
-        public OpinionRequest()
-        {
-            this.Opinion = new HashSet<Opinion>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime Created { get; set; }
         public string Term { get; set; }
         public System.DateTime ToDate { get; set; }
-        public int DayCycle { get; set; }
-        public int Repeate { get; set; }
         public int PageCount { get; set; }
-    
-        public virtual ICollection<Opinion> Opinion { get; set; }
+        public Nullable<double> Result { get; set; }
+        public string ResolvedBy { get; set; }
+        public System.DateTime FromDate { get; set; }
     }
 }
