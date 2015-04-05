@@ -18,9 +18,10 @@ namespace OpinionMinerData
         public System.DateTime Created { get; set; }
         public string Term { get; set; }
         public System.DateTime ToDate { get; set; }
-        public int PageCount { get; set; }
         public Nullable<double> Result { get; set; }
         public string ResolvedBy { get; set; }
         public System.DateTime FromDate { get; set; }
+        public int UrlsCount { get; set; }
+        public Nullable<double> PartlyEvaluated { get; set; }
     }
 }

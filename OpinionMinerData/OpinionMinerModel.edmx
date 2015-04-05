@@ -14,7 +14,8 @@
           <Property Name="Term" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="ToDate" Type="date" Nullable="false" />
           <Property Name="FromDate" Type="date" Nullable="false" />
-          <Property Name="PageCount" Type="int" Nullable="false" />
+          <Property Name="UrlsCount" Type="int" Nullable="false" />
+          <Property Name="PartlyEvaluated" Type="float" />
           <Property Name="Result" Type="float" />
           <Property Name="ResolvedBy" Type="nvarchar" MaxLength="256" />
         </EntityType>
@@ -33,10 +34,11 @@
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Term" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PageCount" Type="Int32" Nullable="false" />
           <Property Name="Result" Type="Double" />
           <Property Name="ResolvedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UrlsCount" Type="Int32" Nullable="false" />
+          <Property Name="PartlyEvaluated" Type="Double" />
         </EntityType>
         <EntityContainer Name="OpinionMinerDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="OpinionRequest" EntityType="Self.OpinionRequest" />
@@ -50,6 +52,8 @@
           <EntitySetMapping Name="OpinionRequest">
             <EntityTypeMapping TypeName="OpinionMinerDBModel.OpinionRequest">
               <MappingFragment StoreEntitySet="OpinionRequest">
+                <ScalarProperty Name="PartlyEvaluated" ColumnName="PartlyEvaluated" />
+                <ScalarProperty Name="UrlsCount" ColumnName="UrlsCount" />
                 <ScalarProperty Name="FromDate" ColumnName="FromDate" />
                 <ScalarProperty Name="ResolvedBy" ColumnName="ResolvedBy" />
                 <ScalarProperty Name="Result" ColumnName="Result" />
@@ -57,7 +61,6 @@
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Term" ColumnName="Term" />
                 <ScalarProperty Name="ToDate" ColumnName="ToDate" />
-                <ScalarProperty Name="PageCount" ColumnName="PageCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
