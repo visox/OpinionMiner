@@ -7,7 +7,7 @@ type Page =
     { url : string
       pureText : string }
 
-let GetPureText (page: HtmlDocument) : string =
+let private GetPureText (page: HtmlDocument) : string =
     page.Descendants["Body"] 
         |> Seq.collect(fun x -> x.InnerText()) 
         |> Array.ofSeq

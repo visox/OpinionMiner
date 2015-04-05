@@ -4,11 +4,11 @@ open System.IO;
 open System;
 open System.Collections.Generic;
 
-let WordValuesFileName = "wordValue.txt"
+let private WordValuesFileName = "wordValue.txt"
 
-let WordValues = new SortedDictionary<string, float>()
+let private WordValues = new SortedDictionary<string, float>()
 
-let InitWordValues =
+let private InitWordValues =
     File.ReadAllLines(WordValuesFileName) 
     |> Seq.iter(fun l -> 
         let word = l.Split('\t').[0]
