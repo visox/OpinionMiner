@@ -28,5 +28,5 @@ let rec AddPartlyRequests term repeate (toDate: DateTime) urlsCount part =
                         ToDate = toDate.AddMonths(-part),
                         FromDate = toDate.AddMonths(-(1+part)),
                         UrlsCount = urlsCount)) |> ignore
-                context.SaveChanges |> ignore)
+                context.SaveChanges() |> ignore)
         AddPartlyRequests term repeate toDate urlsCount (1 + part)

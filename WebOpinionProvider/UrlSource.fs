@@ -8,6 +8,13 @@ open System.Data.Services.Client
 
 open BingSearchContainer
 
+let fakeUrls query =
+    [
+        "https://medium.com/matter/admit-it-your-fave-is-problematic-2dfa692f557b"
+        "http://flavorwire.com/512629/20-things-you-didnt-know-about-your-favorite-classic-hollywood-stars"
+        "http://www.visualnews.com/2015/04/05/nyc-times-square-becoming-a-forest/"
+    ]
+
 let private bingUrl = "https://api.datamarket.azure.com/Bing/Search"
 let private key = "add from ...https://datamarket.azure.com/..."
 

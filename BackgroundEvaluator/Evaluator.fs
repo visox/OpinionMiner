@@ -11,20 +11,18 @@ module Evaluator =
     let private executeForRequest requestId resolvedGuid =
         let request = context.OpinionRequest |> Seq.filter(fun r -> r.Id.Equals(requestId)) |> Seq.exactlyOne
         request.ResolvedBy <- resolvedGuid.ToString()
-        let urls = UrlSource.getBingResult request.Term |> Seq.truncate request.UrlsCount //todo possibly not enough urls
+        let urls = UrlSource.fakeUrls request.Term |> Seq.truncate request.UrlsCount //todo possibly not enough urls
         let mutable results = []
         urls 
             |> Observable.ofSeq
-            |> Observable.map(fun u -> u |> WebParser.LoadPage)
+            |> Observable.map(WebParser.LoadPage)
             |> Observable.subscribe(fun p -> 
                     results <- (p.pureText |> EmotionalTextEvaluator.EvaluateText) :: results
                     request.Result <- results 
                                         |> List.average
                                         |> Nullable<float>
                     request.PartlyEvaluated <- (float (request.UrlsCount / (results |> List.length))) |> Nullable<float>
-                    context.SaveChanges |> ignore
-                    ) |> ignore
-        
+                    context.SaveChanges() |> ignore)       
 
 
     let startExecutingRequestAsync =
@@ -32,5 +30,5 @@ module Evaluator =
             context.OpinionRequest 
             |> Array.ofSeq
             |> Array.filter(fun r -> r.ResolvedBy |> String.IsNullOrEmpty)
-            |> Array.Parallel.iter(fun r -> executeForRequest r.Id Guid.NewGuid))
+            |> Array.Parallel.iter(fun r -> (executeForRequest r.Id Guid.NewGuid) |> ignore))
         ()
