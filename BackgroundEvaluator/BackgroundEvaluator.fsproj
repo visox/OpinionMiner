@@ -50,6 +50,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Observable.fs" />
     <Compile Include="Evaluator.fs" />
     <None Include="Script.fsx" />
     <Content Include="App.config" />

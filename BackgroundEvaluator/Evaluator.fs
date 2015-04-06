@@ -1,7 +1,7 @@
 ﻿namespace BackgroundEvaluator
 
 open System
-
+open System.Linq
 open OpinionMinerData
 
 module Evaluator = 
@@ -10,16 +10,21 @@ module Evaluator =
 
     let private executeForRequest requestId resolvedGuid =
         let request = context.OpinionRequest |> Seq.filter(fun r -> r.Id.Equals(requestId)) |> Seq.exactlyOne
-        let urls = UrlSource.getBingResult request.Term |> Seq.truncate request.UrlsCount //todo possibly not enough urls
-        let result = urls 
-                    |> Seq.map(fun u -> u |> WebParser.LoadPage)
-                    |> Seq.map(fun p -> p.pureText |> EmotionalTextEvaluator.EvaluateText)
-                    |> Seq.average
-        request.Result <- Nullable<float>(result)
         request.ResolvedBy <- resolvedGuid.ToString()
-        request.PartlyEvaluated <- Nullable<float>(1.)
-        context.SaveChanges |> ignore
-        ()
+        let urls = UrlSource.getBingResult request.Term |> Seq.truncate request.UrlsCount //todo possibly not enough urls
+        let mutable results = []
+        urls 
+            |> Observable.ofSeq
+            |> Observable.map(fun u -> u |> WebParser.LoadPage)
+            |> Observable.subscribe(fun p -> 
+                    results <- (p.pureText |> EmotionalTextEvaluator.EvaluateText) :: results
+                    request.Result <- results 
+                                        |> List.average
+                                        |> Nullable<float>
+                    request.PartlyEvaluated <- (float (request.UrlsCount / (results |> List.length))) |> Nullable<float>
+                    context.SaveChanges |> ignore
+                    ) |> ignore
+        
 
 
     let startExecutingRequestAsync =
